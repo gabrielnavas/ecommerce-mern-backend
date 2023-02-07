@@ -10,10 +10,14 @@ dotenv.config()
 
 // mongo db
 const connectionStr = process.env.MONGO_URL
+mongoose.set('strictQuery', true)
 mongoose.connect(connectionStr)
   .then(() => console.log('[ * ] - connected to mongod'))
   .catch(err => console.log(err))
   
+mongoose.connection.on('error', err => {
+  console.log(err)
+})
 
 // http server
 const PORT_SERVER = process.env.PORT || 4000
