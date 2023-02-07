@@ -3,7 +3,7 @@ import http from 'http'
 import { Server } from 'socket.io'
 import cors from 'cors'
 
-const PORT_SERVER = process.env.PORT || 3000
+const PORT_SERVER = process.env.PORT || 4000
 
 const app = express()
 const server = http.createServer(app)
