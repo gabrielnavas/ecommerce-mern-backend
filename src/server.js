@@ -1,10 +1,12 @@
-import express from 'express'
-import http from 'http'
-import { Server } from 'socket.io'
-import cors from 'cors'
+const express = require('express')
+const http = require('http')
+const { Server } = require('socket.io')
+const cors = require('cors')
 
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+
+const userRouter = require('./routes/userRoutes')
 
 dotenv.config()
 
@@ -34,6 +36,9 @@ const io = new Server(server, {
 app.use(cors())
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
+
+// controllers
+app.use(userRouter)
 
 // start server
 server.listen(PORT_SERVER, () => {
